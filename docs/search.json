@@ -1,0 +1,128 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "OpenUrbanAirandMeteorological",
+    "section": "",
+    "text": "This repository hosts the open, reproducible materials developed for the article submitted to Applied Sciences (MDPI, 2025):\n\nCáceres-Tello, J. & Galán-Hernández, J.J. (2025).\nCitizen Science and STEM Education with R: Teaching Innovation through Open Urban Climate Data.\nApplied Sciences (MDPI).\n\nThe project demonstrates how R, Quarto, and open environmental datasets can be integrated to support STEM education, citizen science, and methodological transparency.\n\n\n\n\nThe workflow follows a complete educational and research pipeline:\n\nOpen data acquisition → Madrid air quality & meteorological datasets (2020–2024)\n\nPreprocessing and harmonisation → validation, Parquet conversion, and reproducibility scripts\n\nExploratory analysis → pollutant variability and inter-station correlations\n\nForecasting models → Prophet–LSTM hybrid approach\n\nEducational visualisation → Quarto Notebook for classroom integration\n\nRendered notebook:\n👉 OpenUrbanAir_and_Meteorological_Workflow.html\n\n\n\n\nOpenUrbanAirandMeteorological/\n├── docs/                      # Quarto notebook and rendered HTML\n│   ├── OpenUrbanAir_and_Meteorological_Workflow.qmd\n│   ├── OpenUrbanAir_and_Meteorological_Workflow.html\n│   └── images/                # PNG figures used in the notebook\n├── figures_tiff/              # High-resolution TIFF figures for publication\n├── scripts/                   # R scripts for preprocessing and analysis\n├── .gitignore\n├── LICENSE\n├── datos.Rproj\n└── README.md\n\n\n\n\n\n\nCategory\nTools / Packages\n\n\n\n\nProgramming\nR 4.4 + · Quarto\n\n\nData Handling\ntidyverse · arrow · lubridate\n\n\nVisualisation\nggplot2 · patchwork · leaflet · cowplot\n\n\nForecasting\nprophet · keras · tensorflow · torch\n\n\nReproducibility\nrenv · knitr · rmarkdown\n\n\n\n\n\n\nThis repository supports STEM education by providing: Hands-on examples for environmental informatics and sustainability courses Open-source reproducible R-Quarto workflow Didactic visualisations for citizen science and air quality literacy\n\n\n\nIf you reuse or adapt this resource, please cite as:\n\nCáceres-Tello, J., & Galán-Hernández, J. J. (2025).\nOpenUrbanAirandMeteorological: Citizen Science and STEM Education with R — Teaching Innovation through Open Urban Climate Data.\nApplied Sciences (MDPI).\nAvailable at https://jcaceres-academic.github.io/OpenUrbanAirandMeteorological\n\n\n\n\nCode and notebooks: Creative Commons Attribution 4.0 (CC BY 4.0)\nData (if reused): CC0 1.0 Public Domain Dedication\n\n\n\nJesús Cáceres Tello Department of Computer Systems and Computing Universidad Complutense de Madrid\n📧 jcaceres.academic@gmail.com\n📧 jescacer@ucm.es\n⬅️ Back to my main page\nThis repository supports open, transparent, and reproducible research in environmental data science and STEM education."
+  },
+  {
+    "objectID": "index.html#overview",
+    "href": "index.html#overview",
+    "title": "Open Urban AirandMeteorological",
+    "section": "🧠 Overview",
+    "text": "🧠 Overview\nThis repository hosts the open, reproducible materials developed for the article submitted to Applied Sciences (MDPI, 2025):\n\nCáceres-Tello, J. & Galán-Hernández, J.J. (2025).\nCitizen Science and STEM Education with R: Teaching Innovation through Open Urban Climate Data.\nApplied Sciences (MDPI).\n\nThe project demonstrates how R, Quarto, and open environmental datasets can be integrated to support STEM education, citizen science, and methodological transparency."
+  },
+  {
+    "objectID": "index.html#reproducible-workflow",
+    "href": "index.html#reproducible-workflow",
+    "title": "Open Urban AirandMeteorological",
+    "section": "🧩 Reproducible Workflow",
+    "text": "🧩 Reproducible Workflow\nThe workflow follows a complete educational and research pipeline:\n\nOpen data acquisition → Madrid air quality & meteorological datasets (2020–2024)\n\nPreprocessing and harmonisation → validation, Parquet conversion, and reproducibility scripts\n\nExploratory analysis → pollutant variability and inter-station correlations\n\nForecasting models → Prophet–LSTM hybrid approach\n\nEducational visualisation → Quarto Notebook for classroom integration\n\nRendered notebook:\n👉 OpenUrbanAir_and_Meteorological_Workflow.html"
+  },
+  {
+    "objectID": "index.html#repository-structure",
+    "href": "index.html#repository-structure",
+    "title": "Open Urban AirandMeteorological",
+    "section": "🗂️ Repository Structure",
+    "text": "🗂️ Repository Structure\nOpenUrbanAirandMeteorological/\n├── docs/                      # Quarto notebook and rendered HTML\n│   ├── OpenUrbanAir_and_Meteorological_Workflow.qmd\n│   ├── OpenUrbanAir_and_Meteorological_Workflow.html\n│   └── images/                # PNG figures used in the notebook\n├── figures_tiff/              # High-resolution TIFF figures for publication\n├── scripts/                   # R scripts for preprocessing and analysis\n├── .gitignore\n├── LICENSE\n├── datos.Rproj\n└── README.md"
+  },
+  {
+    "objectID": "index.html#technologies-used",
+    "href": "index.html#technologies-used",
+    "title": "Open Urban AirandMeteorological",
+    "section": "⚙️ Technologies Used",
+    "text": "⚙️ Technologies Used\n\n\n\nCategory\nTools / Packages\n\n\n\n\nProgramming\nR 4.4 + · Quarto\n\n\nData Handling\ntidyverse · arrow · lubridate\n\n\nVisualisation\nggplot2 · patchwork · leaflet · cowplot\n\n\nForecasting\nprophet · keras · tensorflow · torch\n\n\nReproducibility\nrenv · knitr · rmarkdown"
+  },
+  {
+    "objectID": "index.html#educational-use",
+    "href": "index.html#educational-use",
+    "title": "Open Urban AirandMeteorological",
+    "section": "🧭 Educational Use",
+    "text": "🧭 Educational Use\nThis repository supports STEM education by providing: Hands-on examples for environmental informatics and sustainability courses Open-source reproducible R-Quarto workflow Didactic visualisations for citizen science and air quality literacy"
+  },
+  {
+    "objectID": "index.html#citation",
+    "href": "index.html#citation",
+    "title": "Open Urban AirandMeteorological",
+    "section": "📚 Citation",
+    "text": "📚 Citation\nIf you reuse or adapt this resource, please cite as:\n\nCáceres-Tello, J., & Galán-Hernández, J. J. (2025).\nOpenUrbanAirandMeteorological: Citizen Science and STEM Education with R — Teaching Innovation through Open Urban Climate Data.\nApplied Sciences (MDPI).\nAvailable at https://jcaceres-academic.github.io/OpenUrbanAirandMeteorological"
+  },
+  {
+    "objectID": "index.html#license",
+    "href": "index.html#license",
+    "title": "Open Urban AirandMeteorological",
+    "section": "⚖️ License",
+    "text": "⚖️ License\nCode and notebooks: Creative Commons Attribution 4.0 (CC BY 4.0)\nData (if reused): CC0 1.0 Public Domain Dedication"
+  },
+  {
+    "objectID": "index.html#contact",
+    "href": "index.html#contact",
+    "title": "Open Urban AirandMeteorological",
+    "section": "📬 Contact",
+    "text": "📬 Contact\nJesús Cáceres Tello Department of Computer Systems and Computing Universidad Complutense de Madrid\n📧 jcaceres.academic@gmail.com\n📧 jescacer@ucm.es\n⬅️ Back to my main page\nThis repository supports open, transparent, and reproducible research in environmental data science and STEM education."
+  },
+  {
+    "objectID": "notebook.html",
+    "href": "notebook.html",
+    "title": "Educational Notebook",
+    "section": "",
+    "text": "This notebook complements the article Citizen Science and STEM Education with R: Teaching Innovation through Open Urban Climate Data\n(Applied Sciences, 2025) and includes reproducible code examples, data harmonisation workflows, and visualisations.\nIt reproduces the main analytical workflow implemented in the study and illustrates how R and Quarto can be integrated into STEM education to foster data literacy, environmental awareness, and methodological transparency."
+  },
+  {
+    "objectID": "notebook.html#introduction",
+    "href": "notebook.html#introduction",
+    "title": "Educational Notebook",
+    "section": "",
+    "text": "This notebook complements the article Citizen Science and STEM Education with R: Teaching Innovation through Open Urban Climate Data\n(Applied Sciences, 2025) and includes reproducible code examples, data harmonisation workflows, and visualisations.\nIt reproduces the main analytical workflow implemented in the study and illustrates how R and Quarto can be integrated into STEM education to foster data literacy, environmental awareness, and methodological transparency."
+  },
+  {
+    "objectID": "notebook.html#air-quality-data",
+    "href": "notebook.html#air-quality-data",
+    "title": "Educational Notebook",
+    "section": "Air Quality Data",
+    "text": "Air Quality Data\nAir quality datasets were retrieved from the Madrid Open Data Portal (Portal de Datos Abiertos del Ayuntamiento de Madrid).\nMeasurements include nitrogen dioxide (NO₂), ozone (O₃), particulate matter (PM₁₀, PM₂.₅), sulphur dioxide (SO₂), and carbon monoxide (CO) recorded hourly across 24 urban stations (2020–2024).\n\n\n\n\n\nFig. 2a. Air quality monitoring stations across the Madrid urban area (2020–2024)."
+  },
+  {
+    "objectID": "notebook.html#pollutant-coverage",
+    "href": "notebook.html#pollutant-coverage",
+    "title": "Educational Notebook",
+    "section": "Pollutant Coverage",
+    "text": "Pollutant Coverage\nEach station has different pollutant coverage and measurement frequency, which provides an excellent example for students to explore data completeness and measurement uncertainty in open environmental datasets.\n\n\n\n\n\nFig. 2b. Pollutant coverage and measurement frequency across monitoring stations."
+  },
+  {
+    "objectID": "notebook.html#data-processing-workflow",
+    "href": "notebook.html#data-processing-workflow",
+    "title": "Educational Notebook",
+    "section": "Data Processing Workflow",
+    "text": "Data Processing Workflow\nData from both sources were processed in R through three main stages:\n\nReading and cleaning monthly CSVs (removing redundant columns and correcting data types).\n\nValidating records with confirmed measurements (VAL flag).\n\nPivoting and compressing results into parquet format for efficiency and consistency.\n\n\n\n\n\n\nFig. 3. Data acquisition, validation, and harmonisation workflow implemented in R."
+  },
+  {
+    "objectID": "notebook.html#annual-and-seasonal-variability",
+    "href": "notebook.html#annual-and-seasonal-variability",
+    "title": "Educational Notebook",
+    "section": "Annual and Seasonal Variability",
+    "text": "Annual and Seasonal Variability\n\n\n\n\n\nFig. 4. Annual variability of NO₂ and O₃ concentrations (2020–2024)."
+  },
+  {
+    "objectID": "notebook.html#distribution-analysis",
+    "href": "notebook.html#distribution-analysis",
+    "title": "Educational Notebook",
+    "section": "Distribution Analysis",
+    "text": "Distribution Analysis\nBoxplots provide a powerful visual tool to discuss dispersion, central tendency, and outliers across pollutants.\nIn this context, students learn how descriptive statistics translate into environmental interpretation, reinforcing quantitative reasoning with real data.\n\n\n\n\n\nFig. 8. Boxplots of NO₂ and O₃ concentrations across 2020–2024.\n\n\n\n\n\n#🔮 Forecasting with Prophet\nTime-series forecasting introduces students to predictive modelling using open environmental data.\nThe Prophet model (Taylor & Letham, 2018) was selected for its interpretability, decomposition structure, and robustness to missing values — key features for teaching reproducible forecasting in R."
+  },
+  {
+    "objectID": "notebook.html#model-for-no₂",
+    "href": "notebook.html#model-for-no₂",
+    "title": "Educational Notebook",
+    "section": "Model for NO₂",
+    "text": "Model for NO₂\nStudents can visualise how additive components — trend, seasonality, and residuals — reveal the influence of human activity and meteorological cycles on pollutant evolution. This exercise supports reproducible experimentation with forecasting horizons, cross-validation, and performance metrics such as RMSE or MAE.\n\n\n\n\n\nFig. 5a. Prophet forecast for NO₂ concentrations (2020–2024).\n\n\n\n\n\n\n\n\n\nFig. 5b. Prophet forecast for O₃ concentrations (2020–2024)."
+  },
+  {
+    "objectID": "notebook.html#integration-workflow",
+    "href": "notebook.html#integration-workflow",
+    "title": "Educational Notebook",
+    "section": "Integration Workflow",
+    "text": "Integration Workflow\n\n\n\n\n\nFig. 7. Integration workflow of meteorological and air quality data (2020–2024)."
+  }
+]
