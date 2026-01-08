@@ -390,5 +390,12 @@
     "title": "Urban PM2.5 Methodology",
     "section": "4.5 Interpretation of results",
     "text": "4.5 Interpretation of results\nThe reported outputs confirm that the quantum-based analytical component can be executed coherently within the proposed pipeline under realistic computational constraints.\nNo claims of predictive superiority or scalability are made. The results serve exclusively as a functional validation of methodological extensibility."
+  },
+  {
+    "objectID": "index.html#direct-access",
+    "href": "index.html#direct-access",
+    "title": "Urban PM2.5 Methodology",
+    "section": "🔗 Direct access",
+    "text": "🔗 Direct access\n\n🧪 Methodological scripts and pipeline implementation\n💻 Reproducible notebook\n📄 Associated article"
   }
 ]

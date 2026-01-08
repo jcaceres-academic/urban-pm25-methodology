@@ -15,6 +15,12 @@ format:
 
 ---
 
+## 🔗 **Direct access**
+- 🧪 [Methodological scripts and pipeline implementation](scripts.html)
+- 💻 [Reproducible notebook](notebook.html)
+- 📄 [Associated article]()
+
+
 ## 🧠 Overview
 
 This repository hosts the open, reproducible materials developed as a **methodological extension of a doctoral thesis in Applied Data Science**, focused on the analysis of urban PM2.5 concentrations.
