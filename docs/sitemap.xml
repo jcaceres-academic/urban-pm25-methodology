@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://jcaceres-academic.github.io/urban-pm25-methodology/scripts.html</loc>
+    <lastmod>2026-01-07T17:35:44.476Z</lastmod>
+  </url>
+  <url>
     <loc>https://jcaceres-academic.github.io/urban-pm25-methodology/index.html</loc>
-    <lastmod>2026-01-04T19:57:17.488Z</lastmod>
+    <lastmod>2026-01-07T18:14:49.173Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jcaceres-academic.github.io/urban-pm25-methodology/notebook.html</loc>
+    <lastmod>2026-01-08T11:04:20.768Z</lastmod>
   </url>
 </urlset>

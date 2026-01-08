@@ -6,8 +6,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Jesús Cáceres Tello">
+<meta name="author" content="José Javier Galán Hernández">
+<meta name="dcterms.date" content="2025-01-01">
 
-<title>notebook</title>
+<title>Urban PM2.5 Methodology</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,33 +26,439 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="notebook_files/libs/clipboard/clipboard.min.js"></script>
-<script src="notebook_files/libs/quarto-html/quarto.js"></script>
-<script src="notebook_files/libs/quarto-html/popper.min.js"></script>
-<script src="notebook_files/libs/quarto-html/tippy.umd.min.js"></script>
-<script src="notebook_files/libs/quarto-html/anchor.min.js"></script>
-<link href="notebook_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="notebook_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="notebook_files/libs/bootstrap/bootstrap.min.js"></script>
-<link href="notebook_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="notebook_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
 
 
+<link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="fullcontent">
+<body class="floating nav-fixed">
 
-<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
-
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">Urban PM2.5 Methodology</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html" target="_self"> <i class="bi bi-house" role="img">
+</i> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./article.pdf" target="_blank"> <i class="bi bi-file-earmark-text" role="img">
+</i> 
+<span class="menu-text">Article</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./notebook.html" target="_self" aria-current="page"> <i class="bi bi-laptop" role="img">
+</i> 
+<span class="menu-text">Notebook</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./scripts.html" target="_self"> <i class="bi bi-code-slash" role="img">
+</i> 
+<span class="menu-text">Scripts</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/jcaceres-academic/urban-pm25-methodology" target="_blank"> <i class="bi bi-github" role="img">
+</i> 
+<span class="menu-text">GitHub</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#data-preparation-and-harmonisation" id="toc-data-preparation-and-harmonisation" class="nav-link active" data-scroll-target="#data-preparation-and-harmonisation"><span class="header-section-number">1</span> 📂 Data preparation and harmonisation</a>
+  <ul class="collapse">
+  <li><a href="#analytical-context" id="toc-analytical-context" class="nav-link" data-scroll-target="#analytical-context"><span class="header-section-number">1.1</span> Analytical context</a></li>
+  <li><a href="#data-source-and-scope" id="toc-data-source-and-scope" class="nav-link" data-scroll-target="#data-source-and-scope"><span class="header-section-number">1.2</span> Data source and scope</a></li>
+  <li><a href="#preparation-strategy" id="toc-preparation-strategy" class="nav-link" data-scroll-target="#preparation-strategy"><span class="header-section-number">1.3</span> Preparation strategy</a></li>
+  <li><a href="#script-executed" id="toc-script-executed" class="nav-link" data-scroll-target="#script-executed"><span class="header-section-number">1.4</span> Script executed</a></li>
+  </ul></li>
+  <li><a href="#exploratory-and-structural-analysis" id="toc-exploratory-and-structural-analysis" class="nav-link" data-scroll-target="#exploratory-and-structural-analysis"><span class="header-section-number">2</span> 🔍 Exploratory and structural analysis</a>
+  <ul class="collapse">
+  <li><a href="#analytical-context-1" id="toc-analytical-context-1" class="nav-link" data-scroll-target="#analytical-context-1"><span class="header-section-number">2.1</span> Analytical context</a></li>
+  <li><a href="#daily-pm2.5-time-series" id="toc-daily-pm2.5-time-series" class="nav-link" data-scroll-target="#daily-pm2.5-time-series"><span class="header-section-number">2.2</span> Daily PM2.5 time series</a></li>
+  <li><a href="#monthly-distribution-of-pm2.5-concentrations" id="toc-monthly-distribution-of-pm2.5-concentrations" class="nav-link" data-scroll-target="#monthly-distribution-of-pm2.5-concentrations"><span class="header-section-number">2.3</span> Monthly distribution of PM2.5 concentrations</a></li>
+  <li><a href="#average-annual-cycle" id="toc-average-annual-cycle" class="nav-link" data-scroll-target="#average-annual-cycle"><span class="header-section-number">2.4</span> Average annual cycle</a></li>
+  </ul></li>
+  <li><a href="#classical-modelling-and-evaluation" id="toc-classical-modelling-and-evaluation" class="nav-link" data-scroll-target="#classical-modelling-and-evaluation"><span class="header-section-number">3</span> 📐 Classical modelling and evaluation</a>
+  <ul class="collapse">
+  <li><a href="#analytical-context-2" id="toc-analytical-context-2" class="nav-link" data-scroll-target="#analytical-context-2"><span class="header-section-number">3.1</span> Analytical context</a></li>
+  <li><a href="#modelling-strategy" id="toc-modelling-strategy" class="nav-link" data-scroll-target="#modelling-strategy"><span class="header-section-number">3.2</span> Modelling strategy</a></li>
+  <li><a href="#temporal-validation-design" id="toc-temporal-validation-design" class="nav-link" data-scroll-target="#temporal-validation-design"><span class="header-section-number">3.3</span> Temporal validation design</a></li>
+  <li><a href="#model-execution" id="toc-model-execution" class="nav-link" data-scroll-target="#model-execution"><span class="header-section-number">3.4</span> Model execution</a></li>
+  <li><a href="#observed-versus-predicted-concentrations" id="toc-observed-versus-predicted-concentrations" class="nav-link" data-scroll-target="#observed-versus-predicted-concentrations"><span class="header-section-number">3.5</span> Observed versus predicted concentrations</a></li>
+  <li><a href="#quantitative-evaluation" id="toc-quantitative-evaluation" class="nav-link" data-scroll-target="#quantitative-evaluation"><span class="header-section-number">3.6</span> Quantitative evaluation</a></li>
+  <li><a href="#methodological-implications" id="toc-methodological-implications" class="nav-link" data-scroll-target="#methodological-implications"><span class="header-section-number">3.7</span> Methodological implications</a></li>
+  </ul></li>
+  <li><a href="#quantum-methodological-extension-demonstrative" id="toc-quantum-methodological-extension-demonstrative" class="nav-link" data-scroll-target="#quantum-methodological-extension-demonstrative"><span class="header-section-number">4</span> ⚛️ Quantum methodological extension (demonstrative)</a>
+  <ul class="collapse">
+  <li><a href="#analytical-context-3" id="toc-analytical-context-3" class="nav-link" data-scroll-target="#analytical-context-3"><span class="header-section-number">4.1</span> Analytical context</a></li>
+  <li><a href="#conceptual-motivation" id="toc-conceptual-motivation" class="nav-link" data-scroll-target="#conceptual-motivation"><span class="header-section-number">4.2</span> Conceptual motivation</a></li>
+  <li><a href="#quantum-modelling-strategy" id="toc-quantum-modelling-strategy" class="nav-link" data-scroll-target="#quantum-modelling-strategy"><span class="header-section-number">4.3</span> Quantum modelling strategy</a></li>
+  <li><a href="#execution-environment" id="toc-execution-environment" class="nav-link" data-scroll-target="#execution-environment"><span class="header-section-number">4.4</span> Execution environment</a></li>
+  <li><a href="#interpretation-of-results" id="toc-interpretation-of-results" class="nav-link" data-scroll-target="#interpretation-of-results"><span class="header-section-number">4.5</span> Interpretation of results</a></li>
+  </ul></li>
+  <li><a href="#repository-and-citation" id="toc-repository-and-citation" class="nav-link" data-scroll-target="#repository-and-citation"><span class="header-section-number">5</span> 🌐 Repository and Citation</a></li>
+  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references"><span class="header-section-number">6</span> 📚 References</a></li>
+  </ul>
+</nav>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+    </div>
+<!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Urban PM2.5 Methodology</h1>
+<p class="subtitle lead">A reproducible and extensible analytical pipeline for applied data science</p>
+</div>
 
 
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Authors</div>
+  <div class="quarto-title-meta-heading">Affiliations</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Jesús Cáceres Tello <a href="mailto:jcaceres.academic@gmail.com" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Computense University of Madrid
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">José Javier Galán Hernández <a href="mailto:jose.galan@uah.es" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            University of Alcalá de Henares
+          </p>
+      </div>
+  </div>
+
+<div class="quarto-title-meta">
+
+      
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 1, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
 
 
+</header>
 
-</main>
-<!-- /main column -->
+
+<section id="data-preparation-and-harmonisation" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> 📂 Data preparation and harmonisation</h1>
+<section id="analytical-context" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="analytical-context"><span class="header-section-number">1.1</span> Analytical context</h2>
+<p>Urban air quality datasets are typically affected by issues such as missing observations, irregular temporal coverage, and heterogeneous formats.</p>
+<p>Before any exploratory or modelling analysis can be considered meaningful, it is therefore essential to ensure that the data are <strong>clean, temporally consistent, and analysis-ready</strong>.</p>
+<p>This initial stage establishes the <strong>analytical baseline</strong> for the entire pipeline.</p>
+</section>
+<section id="data-source-and-scope" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="data-source-and-scope"><span class="header-section-number">1.2</span> Data source and scope</h2>
+<p>The analysis is based on <strong>daily PM2.5 concentration measurements</strong> collected at an urban monitoring location over the period 2021–2023.</p>
+<p>The dataset is treated as an observational time series, with explicit attention to: - temporal ordering, - continuity of measurements, - and potential gaps in data availability.</p>
+<p>No spatial aggregation or external data sources are introduced at this stage.</p>
+</section>
+<section id="preparation-strategy" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="preparation-strategy"><span class="header-section-number">1.3</span> Preparation strategy</h2>
+<p>The data preparation process follows a transparent and reproducible strategy:</p>
+<ul>
+<li>Raw data are loaded directly from the <code>data/</code> directory.</li>
+<li>Date fields are parsed and validated to ensure correct temporal ordering.</li>
+<li>Missing or invalid observations are identified explicitly.</li>
+<li>No interpolation or synthetic data generation is performed.</li>
+<li>All transformations are executed programmatically.</li>
+</ul>
+<p>This conservative approach ensures that <strong>subsequent analytical results remain traceable to the original observations</strong>.</p>
+</section>
+<section id="script-executed" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="script-executed"><span class="header-section-number">1.4</span> Script executed</h2>
+<p>The complete data preparation logic is implemented in the following script:</p>
+<ul>
+<li><code>01_data_and_preprocessing.R</code></li>
+</ul>
+<p>The script produces a clean, analysis-ready dataset that is reused consistently across all subsequent stages.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-pm25-daily" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" width="90%">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pm25-daily-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/Fig2_PM25_daily_time_series.png" id="fig-pm25-daily" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-pm25-daily-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="exploratory-and-structural-analysis" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> 🔍 Exploratory and structural analysis</h1>
+<section id="analytical-context-1" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="analytical-context-1"><span class="header-section-number">2.1</span> Analytical context</h2>
+<p>Before applying any modelling strategy, it is essential to understand the <strong>temporal and structural properties</strong> of the PM2.5 time series.</p>
+<p>This exploratory stage is not intended to maximise insight discovery, but to: - characterise variability, - identify seasonal behaviour, - and detect structural constraints that inform later methodological choices.</p>
+</section>
+<section id="daily-pm2.5-time-series" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="daily-pm2.5-time-series"><span class="header-section-number">2.2</span> Daily PM2.5 time series</h2>
+<p>The daily time series provides a first global view of the data, revealing both short-term variability and longer-term patterns.</p>
+<p>Key observations include: - pronounced day-to-day fluctuations, - clear medium-term structure, - and visible temporal gaps in specific periods.</p>
+<p>These features confirm the <strong>time-dependent nature</strong> of the data and justify the use of time-aware validation strategies.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-pm25-boxplot" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" width="90%">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pm25-boxplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/Fig3_PM25_monthly_boxplot.png" id="fig-pm25-boxplot" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-pm25-boxplot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="monthly-distribution-of-pm2.5-concentrations" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="monthly-distribution-of-pm2.5-concentrations"><span class="header-section-number">2.3</span> Monthly distribution of PM2.5 concentrations</h2>
+<p>Monthly boxplots summarise the distributional properties of PM2.5 concentrations across the calendar year.</p>
+<p>This representation highlights: - differences in central tendency between months, - varying dispersion levels, - and the presence of extreme values beyond the interquartile range.</p>
+<p>Such variability suggests that simple aggregate indicators are insufficient to characterise urban air quality dynamics.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-pm25-climatology" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" width="90%">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pm25-climatology-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/Fig4_PM25_monthly_climatology.png" id="fig-pm25-climatology" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-pm25-climatology-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;3
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="average-annual-cycle" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="average-annual-cycle"><span class="header-section-number">2.4</span> Average annual cycle</h2>
+<p>The average annual cycle aggregates daily observations by month, providing a compact representation of seasonal behaviour.</p>
+<p>This view reveals: - systematic seasonal patterns, - periods of elevated concentrations, - and months with comparatively stable behaviour.</p>
+<p>The presence of a clear annual cycle supports the inclusion of temporal structure in subsequent modelling stages.</p>
+</section>
+</section>
+<section id="classical-modelling-and-evaluation" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> 📐 Classical modelling and evaluation</h1>
+<section id="analytical-context-2" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="analytical-context-2"><span class="header-section-number">3.1</span> Analytical context</h2>
+<p>The purpose of this modelling stage is not to optimise predictive performance, but to establish <strong>methodological reference points</strong> that are consistent with the temporal nature of the data.</p>
+<p>Rather than comparing multiple complex algorithms, the analysis focuses on <strong>simple and interpretable models</strong> that allow clear evaluation of forecasting behaviour under realistic constraints.</p>
+</section>
+<section id="modelling-strategy" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="modelling-strategy"><span class="header-section-number">3.2</span> Modelling strategy</h2>
+<p>Two baseline modelling approaches are considered:</p>
+<ul>
+<li><strong>Persistence baseline</strong>: assumes that the PM2.5 concentration at time <em>t</em> is equal to the observed value at time <em>t − 1</em>.</li>
+<li><strong>Linear regression model</strong>: uses lagged PM2.5 values as predictors to capture short-term temporal dependence.</li>
+</ul>
+<p>Both models are deliberately simple and serve as <strong>methodological anchors</strong>, not as candidates for optimal forecasting.</p>
+</section>
+<section id="temporal-validation-design" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="temporal-validation-design"><span class="header-section-number">3.3</span> Temporal validation design</h2>
+<p>To preserve the integrity of the time series, a <strong>time-based split</strong> is applied:</p>
+<ul>
+<li>The training period includes the earliest observations.</li>
+<li>The test period consists of the most recent segment of the series.</li>
+</ul>
+<p>No random shuffling or cross-validation is used, as such approaches would violate temporal causality.</p>
+<p>This validation strategy ensures that model evaluation reflects realistic forecasting conditions.</p>
+</section>
+<section id="model-execution" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="model-execution"><span class="header-section-number">3.4</span> Model execution</h2>
+<p>he classical modelling and evaluation procedures are implemented in the following script:</p>
+<ul>
+<li><a href="https://github.com/jcaceres-academic/urban-pm25-methodology/blob/main/scripts/03_modelling_and_evaluation.R"><code>03_modelling_and_evaluation.R</code></a></li>
+</ul>
+<p>The script is executed offline as part of the analytical pipeline and generates the evaluation outputs presented below.</p>
+</section>
+<section id="observed-versus-predicted-concentrations" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="observed-versus-predicted-concentrations"><span class="header-section-number">3.5</span> Observed versus predicted concentrations</h2>
+<p>A visual comparison between observed and predicted PM2.5 concentrations is used to assess model behaviour over the test period.</p>
+<p>This representation allows qualitative evaluation of the following aspects.</p>
+<ul>
+<li>trend tracking</li>
+<li>responsiveness to variability</li>
+<li>systematic bias</li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-pm25-observed-predicted" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" width="90%">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pm25-observed-predicted-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/Fig5_PM25_observed_vs_predicted_2023.png" id="fig-pm25-observed-predicted" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-pm25-observed-predicted-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="quantitative-evaluation" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="quantitative-evaluation"><span class="header-section-number">3.6</span> Quantitative evaluation</h2>
+<p>Model performance is summarised using standard error metrics: - Mean Absolute Error (MAE) - Root Mean Squared Error (RMSE)</p>
+<p>These metrics are reported to characterise forecasting reliability, not to declare model superiority.</p>
+<p>The results confirm that simple linear structures provide modest improvements over naive persistence while remaining fully interpretable.</p>
+</section>
+<section id="methodological-implications" class="level2" data-number="3.7">
+<h2 data-number="3.7" class="anchored" data-anchor-id="methodological-implications"><span class="header-section-number">3.7</span> Methodological implications</h2>
+<p>This modelling stage leads to three key methodological conclusions:</p>
+<ol type="1">
+<li><p>Simple baselines are essential for contextualising model performance.</p></li>
+<li><p>Time-aware validation is critical in environmental forecasting.</p></li>
+<li><p>Increased model complexity is not justified without clear methodological benefit.</p></li>
+</ol>
+<p>These conclusions establish a stable reference framework for any subsequent methodological extensions, including emerging computational paradigms.</p>
+</section>
+</section>
+<section id="quantum-methodological-extension-demonstrative" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> ⚛️ Quantum methodological extension (demonstrative)</h1>
+<section id="analytical-context-3" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="analytical-context-3"><span class="header-section-number">4.1</span> Analytical context</h2>
+<p>This stage explores the <strong>extensibility of the methodological pipeline</strong> to emerging computational paradigms, specifically quantum machine learning under current <strong>Noisy Intermediate-Scale Quantum (NISQ)</strong> constraints.</p>
+<p>The objective is <strong>not</strong> to achieve superior predictive performance, nor to compare quantum and classical models, but to demonstrate that the pipeline can <strong>accommodate novel architectures without structural modification</strong>.</p>
+</section>
+<section id="conceptual-motivation" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="conceptual-motivation"><span class="header-section-number">4.2</span> Conceptual motivation</h2>
+<p>Quantum computing is increasingly discussed in the context of data science and machine learning. However, many applications remain speculative or disconnected from realistic data constraints.</p>
+<p>In this notebook, the quantum component is introduced with a <strong>conservative and methodological focus</strong>, respecting the following principles:</p>
+<ul>
+<li>Explicit acknowledgment of current hardware and algorithmic limitations.</li>
+<li>Reduced training size to ensure computational feasibility.</li>
+<li>Absence of performance claims or scalability assertions.</li>
+<li>Clear separation between methodological demonstration and empirical optimisation.</li>
+</ul>
+</section>
+<section id="quantum-modelling-strategy" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="quantum-modelling-strategy"><span class="header-section-number">4.3</span> Quantum modelling strategy</h2>
+<p>A <strong>quantum kernel-based regression approach</strong> is employed as a proof of concept.</p>
+<p>Key characteristics of the implementation include:</p>
+<ul>
+<li>Feature mapping using a parameterised quantum circuit.</li>
+<li>Kernel evaluation executed on a quantum simulator.</li>
+<li>Integration with classical regression through hybrid quantum–classical workflows.</li>
+<li>Deliberate restriction of the training subset size.</li>
+</ul>
+<p>This strategy allows the quantum block to be executed within the same analytical pipeline used for classical models.</p>
+</section>
+<section id="execution-environment" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="execution-environment"><span class="header-section-number">4.4</span> Execution environment</h2>
+<p>The quantum methodological extension is executed in a dedicated Python environment configured with Conda and Qiskit.</p>
+<p>Due to the specialised nature of the environment and current NISQ constraints, the execution is <strong>documented rather than reproduced directly within this notebook</strong>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-quantum-conda" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" width="90%">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-quantum-conda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/Fig6_Quantum_Console_Output.png" id="fig-quantum-conda" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-quantum-conda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="interpretation-of-results" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="interpretation-of-results"><span class="header-section-number">4.5</span> Interpretation of results</h2>
+<p>The reported outputs confirm that the quantum-based analytical component can be executed coherently within the proposed pipeline under realistic computational constraints.</p>
+<p>No claims of predictive superiority or scalability are made. The results serve exclusively as a functional validation of methodological extensibility.</p>
+</section>
+</section>
+<section id="repository-and-citation" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> 🌐 Repository and Citation</h1>
+<p>All code, figures, and harmonised datasets are openly available at:<br>
+<a href="https://github.com/jcaceres-academic/urban-pm25-methdology" class="uri">https://github.com/jcaceres-academic/urban-pm25-methdology</a></p>
+<p>When citing this educational resource, please use:</p>
+<blockquote class="blockquote">
+<p>Cáceres-Tello, J., &amp; Galán-Hernández, J. J. (2025).<br>
+Urban PM2.5 Methodology: A reproducible analytical pipeline for applied data science. Available at: <a href="https://jcaceres-academic.github.io/urban-pm25-methodology">https://jcaceres-academic.github.io/urban-pm25-methodology/</a> DOI: [placeholder]</p>
+</blockquote>
+<p>This ensures traceability and recognition for open-source academic contributions.</p>
+</section>
+<section id="references" class="level1" data-number="6">
+<h1 data-number="6"><span class="header-section-number">6</span> 📚 References</h1>
+<p>All cited works are managed through the shared bibliographic file</p>
+<p>A public mirror of this bibliography is archived in the author’s Zotero collection:<br>
+➡️ <a href="https://www.zotero.org/jcaceres_academic/collections/X6RW9UGU" class="uri">https://www.zotero.org/jcaceres_academic/collections/X6RW9UGU</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -142,7 +551,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/jcaceres-academic\.github\.io\/urban-pm25-methodology\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -475,4 +884,5 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

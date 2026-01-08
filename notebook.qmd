@@ -1,15 +1,15 @@
 ---
-title: "Educational Notebook"
-subtitle: "Citizen Science and STEM Education with R — AI–IoT Forecasting and Reproducible Learning from Open Urban Air Quality Data"
+title: "Urban PM2.5 Methodology"
+subtitle: "A reproducible and extensible analytical pipeline for applied data science"
 author:
   - name: "Jesús Cáceres Tello"
-    affiliation: "Universidad Complutense de Madrid"
+    affiliation: "Computense University of Madrid"
     email: "jcaceres.academic@gmail.com"
   - name: "José Javier Galán Hernández"
-    affiliation: "Universidad Complutense de Madrid"
+    affiliation: "University of Alcalá de Henares"
+    email: "jose.galan@uah.es"
 date: "2025"
 lang: en
-bibliography: ../applsci-3979500.bib
 link-citations: true
 format:
   html:
@@ -20,234 +20,242 @@ format:
     theme: cosmo
 ---
 
-## 🌍 Introduction
+# 📂 Data preparation and harmonisation
 
-This notebook complements the article *Citizen Science and STEM Education with R: AI–IoT Forecasting and Reproducible Learning from Open Urban Air Quality Data*\
-(Applied Sciences, 2025) and includes reproducible code examples, data harmonisation workflows, and visualisations.
+## Analytical context
 
-It reproduces the main analytical workflow implemented in the study and illustrates how R and Quarto can be integrated into **STEM education** to foster data literacy, environmental awareness, and methodological transparency.
+Urban air quality datasets are typically affected by issues such as missing observations, irregular temporal coverage, and heterogeneous formats.
 
-------------------------------------------------------------------------
+Before any exploratory or modelling analysis can be considered meaningful, it is therefore essential to ensure that the data are **clean, temporally consistent, and analysis-ready**.
 
-# 🔁 Reproducible Data Workflow
+This initial stage establishes the **analytical baseline** for the entire pipeline.
 
-The complete workflow integrates **open data**, **computational reproducibility**, and **STEM learning**.\
-It can be applied to other urban contexts or courses focusing on environmental informatics, statistical modelling, or sustainability transitions.
+## Data source and scope
 
-```{r fig1-pipeline, echo=FALSE, fig.align='center', out.width='90%', fig.cap='Fig. 1. Open Data and Methodological Pipeline.'}
-knitr::include_graphics("images/Fig1_Open_Data_and_Methodological_Pipeline.png")
+The analysis is based on **daily PM2.5 concentration measurements** collected at an urban monitoring location over the period 2021–2023.
 
+The dataset is treated as an observational time series, with explicit attention to:
+- temporal ordering,
+- continuity of measurements,
+- and potential gaps in data availability.
+
+No spatial aggregation or external data sources are introduced at this stage.
+
+## Preparation strategy
+
+The data preparation process follows a transparent and reproducible strategy:
+
+- Raw data are loaded directly from the `data/` directory.
+- Date fields are parsed and validated to ensure correct temporal ordering.
+- Missing or invalid observations are identified explicitly.
+- No interpolation or synthetic data generation is performed.
+- All transformations are executed programmatically.
+
+This conservative approach ensures that **subsequent analytical results remain traceable to the original observations**.
+
+## Script executed
+
+The complete data preparation logic is implemented in the following script:
+
+- `01_data_and_preprocessing.R`
+
+The script produces a clean, analysis-ready dataset that is reused consistently across all subsequent stages.
+
+```{r fig-pm25-daily, echo=FALSE, fig.align="center", out.width="90%"}
+knitr::include_graphics("images/Fig2_PM25_daily_time_series.png")
 ```
 
-------------------------------------------------------------------------
+# 🔍 Exploratory and structural analysis
 
-# 🗂️️ Data Sources and Structure
+## Analytical context
 
-## Air Quality Data
+Before applying any modelling strategy, it is essential to understand the **temporal and structural properties** of the PM2.5 time series.
 
-Air quality datasets were retrieved from the **Madrid Open Data Portal** (*Portal de Datos Abiertos del Ayuntamiento de Madrid*).\
-Measurements include nitrogen dioxide (NO₂), ozone (O₃), particulate matter (PM₁₀, PM₂.₅), sulphur dioxide (SO₂), and carbon monoxide (CO) recorded hourly across 24 urban stations (2020–2024).
+This exploratory stage is not intended to maximise insight discovery, but to:
+- characterise variability,
+- identify seasonal behaviour,
+- and detect structural constraints that inform later methodological choices.
 
-```{r fig2a-map, echo=FALSE, fig.align='center', out.width='90%', fig.cap='Fig. 2a. Air quality monitoring stations across the Madrid urban area (2020–2024).'}
-knitr::include_graphics("images/Fig2a_Mapa_Madrid_Final_v7_3.png")
+## Daily PM2.5 time series
 
+The daily time series provides a first global view of the data, revealing both short-term variability and longer-term patterns.
+
+Key observations include:
+- pronounced day-to-day fluctuations,
+- clear medium-term structure,
+- and visible temporal gaps in specific periods.
+
+These features confirm the **time-dependent nature** of the data and justify the use of time-aware validation strategies.
+
+```{r fig-pm25-boxplot, echo=FALSE, fig.align="center", out.width="90%"}
+knitr::include_graphics("images/Fig3_PM25_monthly_boxplot.png")
 ```
 
-## Pollutant Coverage
+## Monthly distribution of PM2.5 concentrations
 
-Each station has different pollutant coverage and measurement frequency, which provides an excellent example for students to explore data completeness and measurement uncertainty in open environmental datasets.
+Monthly boxplots summarise the distributional properties of PM2.5 concentrations across the calendar year.
 
-```{r fig2b-coverage, echo=FALSE, fig.align='center', out.width='90%', fig.cap='Fig. 2b. Pollutant coverage and measurement frequency across monitoring stations.'}
-knitr::include_graphics("images/Fig2b_Bar_Coverage.png")
+This representation highlights:
+- differences in central tendency between months,
+- varying dispersion levels,
+- and the presence of extreme values beyond the interquartile range.
+
+Such variability suggests that simple aggregate indicators are insufficient to characterise urban air quality dynamics.
+
+```{r fig-pm25-climatology, echo=FALSE, fig.align="center", out.width="90%"}
+knitr::include_graphics("images/Fig4_PM25_monthly_climatology.png")
 ```
 
-## Data Processing Workflow
+## Average annual cycle
 
-Data from both sources were processed in R through three main stages:
+The average annual cycle aggregates daily observations by month, providing a compact representation of seasonal behaviour.
 
-1.  Reading and cleaning monthly CSVs (removing redundant columns and correcting data types).\
-2.  Validating records with confirmed measurements (`VAL` flag).\
-3.  Pivoting and compressing results into `parquet` format for efficiency and consistency.
+This view reveals:
+- systematic seasonal patterns,
+- periods of elevated concentrations,
+- and months with comparatively stable behaviour.
 
-```{r fig3-pipeline, echo=FALSE, fig.align='center', out.width='90%', fig.cap='Fig. 3. Data acquisition, validation, and harmonisation workflow implemented in R.'}
-knitr::include_graphics("images/Fig3_Data_Pipeline.png")
+The presence of a clear annual cycle supports the inclusion of temporal structure in subsequent modelling stages.
+
+# 📐 Classical modelling and evaluation
+
+## Analytical context
+
+The purpose of this modelling stage is not to optimise predictive performance, but to establish **methodological reference points** that are consistent with the temporal nature of the data.
+
+Rather than comparing multiple complex algorithms, the analysis focuses on **simple and interpretable models** that allow clear evaluation of forecasting behaviour under realistic constraints.
+
+## Modelling strategy
+
+Two baseline modelling approaches are considered:
+
+- **Persistence baseline**: assumes that the PM2.5 concentration at time *t* is equal to the observed value at time *t − 1*.
+- **Linear regression model**: uses lagged PM2.5 values as predictors to capture short-term temporal dependence.
+
+Both models are deliberately simple and serve as **methodological anchors**, not as candidates for optimal forecasting.
+
+## Temporal validation design
+
+To preserve the integrity of the time series, a **time-based split** is applied:
+
+- The training period includes the earliest observations.
+- The test period consists of the most recent segment of the series.
+
+No random shuffling or cross-validation is used, as such approaches would violate temporal causality.
+
+This validation strategy ensures that model evaluation reflects realistic forecasting conditions.
+
+## Model execution
+
+he classical modelling and evaluation procedures are implemented in the following script:
+
+- [`03_modelling_and_evaluation.R`](https://github.com/jcaceres-academic/urban-pm25-methodology/blob/main/scripts/03_modelling_and_evaluation.R)
+
+The script is executed offline as part of the analytical pipeline and generates the evaluation outputs presented below.
+
+
+## Observed versus predicted concentrations
+
+A visual comparison between observed and predicted PM2.5 concentrations is used to assess model behaviour over the test period.
+
+This representation allows qualitative evaluation of the following aspects.
+
+- trend tracking
+- responsiveness to variability
+- systematic bias
+
+```{r fig-pm25-observed-predicted, echo=FALSE, fig.align="center", out.width="90%"}
+knitr::include_graphics("images/Fig5_PM25_observed_vs_predicted_2023.png")
 ```
 
-------------------------------------------------------------------------
+## Quantitative evaluation
 
-# 📊 Exploratory Analysis
+Model performance is summarised using standard error metrics:
+   - Mean Absolute Error (MAE)
+   - Root Mean Squared Error (RMSE)
 
-Exploratory analysis introduces students to descriptive statistics and visual analytics in R using open environmental data.\
-The focus is on **NO₂** (a primary traffic-related pollutant) and **O₃** (a secondary pollutant formed photochemically), both key indicators of urban air quality dynamics.
+These metrics are reported to characterise forecasting reliability, not to declare model superiority.
 
-```{r fig4a-variability, echo=FALSE, fig.align='center', out.width='90%', fig.cap='Fig. 4. Annual variability of NO₂ and O₃ concentrations (2020–2024).'}
-knitr::include_graphics("images/Fig4_NO2_O3_Annual_Variability.png")
+The results confirm that simple linear structures provide modest improvements over naive persistence while remaining fully interpretable.
+
+## Methodological implications
+
+This modelling stage leads to three key methodological conclusions:
+
+   1. Simple baselines are essential for contextualising model performance.
+
+   2. Time-aware validation is critical in environmental forecasting.
+
+   3. Increased model complexity is not justified without clear methodological benefit.
+
+These conclusions establish a stable reference framework for any subsequent methodological extensions, including emerging computational paradigms.
+
+
+# ⚛️ Quantum methodological extension (demonstrative)
+
+## Analytical context
+
+This stage explores the **extensibility of the methodological pipeline** to emerging computational paradigms, specifically quantum machine learning under current **Noisy Intermediate-Scale Quantum (NISQ)** constraints.
+
+The objective is **not** to achieve superior predictive performance, nor to compare quantum and classical models, but to demonstrate that the pipeline can **accommodate novel architectures without structural modification**.
+
+## Conceptual motivation
+
+Quantum computing is increasingly discussed in the context of data science and machine learning. However, many applications remain speculative or disconnected from realistic data constraints.
+
+In this notebook, the quantum component is introduced with a **conservative and methodological focus**, respecting the following principles:
+
+- Explicit acknowledgment of current hardware and algorithmic limitations.
+- Reduced training size to ensure computational feasibility.
+- Absence of performance claims or scalability assertions.
+- Clear separation between methodological demonstration and empirical optimisation.
+
+## Quantum modelling strategy
+
+A **quantum kernel-based regression approach** is employed as a proof of concept.
+
+Key characteristics of the implementation include:
+
+- Feature mapping using a parameterised quantum circuit.
+- Kernel evaluation executed on a quantum simulator.
+- Integration with classical regression through hybrid quantum–classical workflows.
+- Deliberate restriction of the training subset size.
+
+This strategy allows the quantum block to be executed within the same analytical pipeline used for classical models.
+
+## Execution environment
+
+The quantum methodological extension is executed in a dedicated Python environment configured with Conda and Qiskit.
+
+Due to the specialised nature of the environment and current NISQ constraints, the execution is **documented rather than reproduced directly within this notebook**.
+
+```{r fig-quantum-conda, echo=FALSE, fig.align="center", out.width="90%"}
+knitr::include_graphics("images/Fig6_Quantum_Console_Output.png")
 ```
 
-## Annual and Seasonal Variability
+## Interpretation of results
 
-```{r fig4-variability, echo=FALSE, fig.align='center', out.width='90%', fig.cap='Fig. 4. Annual variability of NO₂ and O₃ concentrations (2020–2024).'}
-knitr::include_graphics("images/Fig4_NO2_O3_Annual_Variability.png")
-```
+The reported outputs confirm that the quantum-based analytical component can be executed coherently within the proposed pipeline under realistic computational constraints.
 
-## Distribution Analysis
-
-Boxplots provide a powerful visual tool to discuss dispersion, central tendency, and outliers across pollutants.\
-In this context, students learn how descriptive statistics translate into environmental interpretation, reinforcing quantitative reasoning with real data.
-
-```{r fig8-boxplots, echo=FALSE, fig.align='center', out.width='90%', fig.cap='Fig. 8. Boxplots of NO₂ and O₃ concentrations across 2020–2024.'}
-knitr::include_graphics("images/Figure8_Boxplots_NO2_O3_2020_2024.png")
-```
-
-------------------------------------------------------------------------
-
-#🔮 Forecasting with Prophet
-
-Time-series forecasting introduces students to predictive modelling using open environmental data.\
-The **Prophet model** (Taylor & Letham, 2018) was selected for its interpretability, decomposition structure, and robustness to missing values — key features for teaching reproducible forecasting in R.
-
-## Model for NO₂
-
-Students can visualise how additive components — trend, seasonality, and residuals — reveal the influence of human activity and meteorological cycles on pollutant evolution. This exercise supports reproducible experimentation with forecasting horizons, cross-validation, and performance metrics such as RMSE or MAE.
-
-```{r fig5a-prophet-no2, echo=FALSE, fig.align='center', out.width='90%', fig.cap='Fig. 5a. Prophet forecast for NO₂ concentrations (2020–2024).'}
-knitr::include_graphics("images/Fig5a_Prophet_NO2_F.png")
-```
-
-```{r fig5b-prophet-O3, echo=FALSE, fig.align='center', out.width='90%', fig.cap='Fig. 5b. Prophet forecast for O₃ concentrations (2020–2024).'}
-knitr::include_graphics("images/Fig5b_Prophet_O3_F.png")
-```
-
-------------------------------------------------------------------------
-
-# 🌦 Meteorological Integration
-
-Meteorological factors shape pollutant behaviour and are fundamental in understanding atmospheric processes.\
-By integrating temperature, solar radiation, and wind speed data from **AEMET**, learners can explore multivariate relationships within an urban ecosystem.
-
-## Integration Workflow
-
-```{r fig7-meteo, echo=FALSE, fig.align='center', out.width='90%', fig.cap='Fig. 7. Integration workflow of meteorological and air quality data (2020–2024).'}
-knitr::include_graphics("images/Fig7_Meteorological_Data_Integration_Workflow_2020_2024.png")
-```
-
-## Correlation Analysis between Pollutants and Meteorological Variables
-
-To complement the integration workflow, this section computes the **Spearman correlations** between daily concentrations of NO₂ and O₃ and six meteorological parameters (temperature, relative humidity, wind speed, solar radiation, atmospheric pressure, and precipitation) using the validated datasets (2020–2024).
-
-```{r correlation-table, echo=TRUE, message=FALSE, warning=FALSE}
-## Correlation Analysis between Pollutants and Meteorological Variables
-
-library(arrow)
-library(dplyr)
-library(tidyr)
-library(corrr)
-library(knitr)
-library(purrr)
-library(lubridate)
-
-# --- 1. Cargar y combinar archivos anuales ---
-air_files <- list.files("data/Calidad del Aire_Parquet",
-                        pattern = "aire_validados_.*\\.parquet$", full.names = TRUE)
-met_files <- list.files("data/Meteorologia_Parquet",
-                        pattern = "meteo_validados_.*\\.parquet$", full.names = TRUE)
-
-air <- map_dfr(air_files, read_parquet)
-met <- map_dfr(met_files, read_parquet)
-
-# --- 2. Crear variable diaria (solo la fecha, sin hora) ---
-air <- air %>%
-  mutate(date = as.Date(FECHA_HORA))  # si ya es Date, simplemente duplica la columna
-
-met <- met %>%
-  mutate(date = as.Date(FECHA_HORA))
-
-# --- 3. Pivotar ambos datasets (formato largo → ancho) ---
-air_wide <- air %>%
-  mutate(MAGNITUD = as.character(MAGNITUD)) %>%
-  group_by(date, MAGNITUD) %>%
-  summarise(valor = mean(VALOR, na.rm = TRUE), .groups = "drop") %>%
-  pivot_wider(names_from = MAGNITUD, values_from = valor)
-
-met_wide <- met %>%
-  mutate(MAGNITUD = as.character(MAGNITUD)) %>%
-  group_by(date, MAGNITUD) %>%
-  summarise(valor = mean(VALOR, na.rm = TRUE), .groups = "drop") %>%
-  pivot_wider(names_from = MAGNITUD, values_from = valor)
-
-# --- 4. Unir por fecha ---
-data_joined <- inner_join(air_wide, met_wide, by = "date")
-
-# --- 5. Renombrar magnitudes según códigos del Ayuntamiento de Madrid ---
-data_joined <- data_joined %>%
-  rename(
-    NO2 = `8`,
-    O3 = `14`,
-    WS = `81`,
-    T = `83`,
-    PRES = `85`,
-    RH = `86`,
-    SR = `87`,
-    PREC = `89`
-  )
-
-# --- 6. Calcular correlaciones de Spearman ---
-cor_matrix <- data_joined %>%
-  select(NO2, O3, T, RH, WS, SR, PRES, PREC) %>%
-  correlate(method = "spearman") %>%
-  focus(NO2, O3) %>%
-  arrange(term)
-
-# --- 7. Mostrar tabla formateada ---
-kable(round(cor_matrix, 2),
-      caption = "Table 4. Spearman correlation coefficients (ρ) between daily pollutant concentrations and meteorological variables (2020–2024).",
-      col.names = c("Variable", "NO₂", "O₃"))
-
-
-```
-
-------------------------------------------------------------------------
-
-# 🎓 Learning and Reproducibility Framework
-
-Reproducibility is both a scientific and pedagogical value.\
-This framework unifies open data, transparent computation, and educational innovation, reinforcing the culture of **open science**.
-
-```{r fig6-learning, echo=FALSE, fig.align='center', out.width='90%', fig.cap='Fig. 6. Reproducible learning and open-science framework for STEM education.'}
-knitr::include_graphics("images/Fig6_Learning_Reproducibility_Ecosystem.png")
-```
-
-------------------------------------------------------------------------
-
-# 🧑‍🏫 Educational Applications
-
-This Notebook can be directly incorporated into undergraduate or postgraduate STEM courses focused on data analysis, environmental informatics, or sustainability.
-
-**Suggested learning activities:** 1. Reproduce pollutant forecasts with modified training periods.\
-2. Explore correlations between additional meteorological variables.\
-3. Design inquiry-based projects connecting data to local environmental policies.\
-4. Document and publish reproducible reports using Quarto and GitHub.
-
-Through these exercises, students not only practise coding but also embrace scientific integrity and civic engagement through data.
-
-------------------------------------------------------------------------
+No claims of predictive superiority or scalability are made. The results serve exclusively as a functional validation of methodological extensibility.
 
 # 🌐 Repository and Citation
 
 All code, figures, and harmonised datasets are openly available at:\
-<https://github.com/jcaceres-academic/OpenUrbanAirandMeteorological>
+<https://github.com/jcaceres-academic/urban-pm25-methdology>
 
 When citing this educational resource, please use:
 
-> Cáceres-Tello, J.; Galán-Hernández, J.J. (2025). *Citizen Science and STEM Education with R: Reproducible Learning from Open Urban Air Quality Data.* *Applied Sciences*, 15(x), xxxx.\
+> Cáceres-Tello, J., & Galán-Hernández, J. J. (2025).  
+Urban PM2.5 Methodology: A reproducible analytical pipeline for applied data science.
+Available at: [https://jcaceres-academic.github.io/urban-pm25-methodology/](https://jcaceres-academic.github.io/urban-pm25-methodology) 
 > DOI: \[placeholder\]
 
 This ensures traceability and recognition for open-source academic contributions.
 
-------------------------------------------------------------------------
-
 # 📚 References
 
-All cited works are managed through the shared bibliographic file [`applsci-3979500.bib`](../applsci-3979500.bib), which includes all references used in the manuscript and notebook.\
+All cited works are managed through the shared bibliographic file 
+
 A public mirror of this bibliography is archived in the author’s Zotero collection:\
 ➡️ <https://www.zotero.org/jcaceres_academic/collections/X6RW9UGU>

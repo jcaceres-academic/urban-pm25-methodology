@@ -1,0 +1,139 @@
+---
+title: "Scripts and Methodological Workflow"
+subtitle: "Reproducible analytical pipeline for Urban PM2.5 research"
+format:
+  html:
+    toc: true
+    theme: cosmo
+---
+
+## Purpose of this section
+
+This page documents the **analytical scripts** that implement the methodological pipeline developed in the doctoral thesis and extended in this project.
+
+Rather than focusing on algorithmic performance, the scripts reflect a **pipeline-oriented research strategy**, where coherence, transparency, and reproducibility are prioritised over model benchmarking.
+
+All scripts are openly available in the project repository and can be executed independently.
+
+---
+
+## Methodological position
+
+The analytical workflow is structured around the following principles:
+
+- Sequential and traceable execution.
+- Explicit handling of temporal structure.
+- Separation between data preparation, exploration, modelling, and evaluation.
+- Responsible integration of emerging computational paradigms.
+- Full reproducibility using open tools and documented scripts.
+
+This approach is aligned with the methodological framework defended in the doctoral thesis and presented here as an example of **research continuity**.
+
+---
+
+## Script overview
+
+### 01 — Data preparation and preprocessing  
+**`01_data_and_preprocessing.R`**
+
+This script implements the first stage of the pipeline: transforming raw observational data into an analysis-ready dataset.
+
+**Main objectives**
+- Load raw daily PM2.5 data.
+- Parse and validate temporal information.
+- Identify and handle missing values.
+- Ensure internal consistency and traceability.
+
+**Output**
+- A clean dataset stored in the `data/` directory, used by all subsequent scripts.
+
+This step establishes the **analytical baseline** of the entire workflow.
+
+---
+
+### 02 — Exploratory and correlation analysis  
+**`02_exploratory_and_correlation_analysis.R`**
+
+This script focuses on understanding the structural properties of the PM2.5 time series.
+
+**Main objectives**
+- Descriptive statistical analysis.
+- Daily time series visualisation.
+- Monthly and seasonal variability assessment.
+- Detection of missing temporal segments.
+- Exploratory correlation patterns.
+
+**Outputs**
+- High-resolution figures stored in `figures_tiff/`.
+- Console summaries for transparency and traceability.
+
+The goal is not prediction, but **contextual understanding of the data-generating process**.
+
+---
+
+### 03 — Classical modelling and evaluation  
+**`03_modelling_and_evaluation.R`**
+
+This script implements simple, interpretable classical models to establish a methodological reference.
+
+**Main objectives**
+- Construction of a persistence baseline (lag-1).
+- Linear regression with temporal structure.
+- Time-based train–test splitting.
+- Evaluation using MAE and RMSE.
+- Visual comparison between observed and modelled values.
+
+Models are intentionally kept simple to emphasise **methodological validation rather than optimisation**.
+
+---
+
+### 04 — Quantum exploratory analysis (demonstrative)  
+**`04_quantum_exploratory_analysis_qiskit.py`**
+
+This script demonstrates the **extensibility of the pipeline** to emerging quantum computing architectures.
+
+**Key characteristics**
+- Implemented in Python due to the native Qiskit ecosystem.
+- Uses a quantum kernel-based regression model.
+- Executed under explicit NISQ constraints.
+- Training performed on a deliberately reduced subset.
+- No comparison with classical models is intended.
+
+**Interpretation**
+Reported metrics serve solely as a **sanity check**, confirming that the quantum block integrates correctly into the existing analytical workflow.
+
+No claims of quantum advantage or scalability are made.
+
+---
+
+## Execution order
+
+Scripts are designed to be executed sequentially:
+
+1. Data preparation  
+2. Exploratory analysis  
+3. Classical modelling  
+4. Quantum methodological extension  
+
+This structure ensures full traceability and reproducibility.
+
+---
+
+## Reproducibility and openness
+
+All scripts:
+- Are fully documented.
+- Rely exclusively on open-source tools.
+- Produce results programmatically.
+- Can be executed independently by third parties.
+
+The technical documentation for execution details is provided in the corresponding `README.md` files within the repository.
+
+---
+
+## Final remark
+
+This script-based architecture is presented as an example of **methodological maturity** in applied data science research, where analytical coherence and transparency take precedence over technological novelty.
+
+It is intended to support both academic research and educational use.
+.

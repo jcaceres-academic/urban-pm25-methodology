@@ -1,6 +1,6 @@
 ---
-title: "Open Urban Air and Meteorological"
-subtitle: "Citizen Science and STEM Education with R: Teaching Innovation through Open Urban Climate Data"
+title: "Urban PM2.5 Methodology"
+subtitle: "A reproducible and extensible analytical pipeline for applied data science"
 lang: en
 format:
   html:
@@ -9,103 +9,139 @@ format:
 ---
 
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
-[![DOI](https://img.shields.io/badge/DOI-10.3390%2Fapp152212183-blue.svg)](https://doi.org/10.3390/app152212183)
-[![Made with R](https://img.shields.io/badge/Made%20with-R-blue.svg)](https://www.r-project.org/)
-[![Quarto Document](https://img.shields.io/badge/Rendered_with-Quarto-4A90E2.svg)](https://quarto.org/)
-[![GitHub Pages](https://img.shields.io/badge/Website-online-brightgreen.svg)](https://jcaceres-academico.github.io/OpenUrbanAirandMeteorological/)
+[![Rendered with Quarto](https://img.shields.io/badge/Rendered_with-Quarto-4A90E2.svg)](https://quarto.org/)
+[![GitHub Pages](https://img.shields.io/badge/Website-online-brightgreen.svg)](https://jcaceres-academic.github.io/urban-pm25-methodology/)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-black.svg)](https://github.com/jcaceres-academic/urban-pm25-methodology)
 
 ---
 
 ## 🧠 Overview
 
-This repository hosts the open, reproducible materials developed for the article submitted to *Applied Sciences (MDPI, 2025)*:
+This repository hosts the open, reproducible materials developed as a **methodological extension of a doctoral thesis in Applied Data Science**, focused on the analysis of urban PM2.5 concentrations.
 
-📄 **Article**  
-Cáceres-Tello, J. & Galán-Hernández, J.J. (2025).  
-*Citizen Science and STEM Education with R: Teaching Innovation through Open Urban Climate Data.*  
-**Applied Sciences (MDPI)**.  
-DOI: [10.3390/app152212183](https://doi.org/10.3390/app152212183)
+Rather than proposing a single optimal predictive model, the project introduces a **coherent analytical pipeline** designed for real-world environmental data, where temporal structure, interpretability, and reproducibility are prioritised over algorithmic benchmarking.
 
-
-The project demonstrates how **R, Quarto, and open environmental datasets** can be integrated to support **STEM education, citizen science, and methodological transparency**.
+The project is presented as an example of **research continuity**, illustrating how a doctoral research line can evolve beyond the thesis itself.
 
 ---
 
-## 🧩 Reproducible Workflow
+## 🎯 Research motivation
 
-The workflow follows a complete educational and research pipeline:
+Urban air quality analysis is often approached through fragmented workflows, ad hoc modelling decisions, or performance-driven comparisons that overlook methodological coherence.
 
-1. **Open data acquisition** → Madrid air quality & meteorological datasets (2020–2024)  
-2. **Preprocessing and harmonisation** → validation, Parquet conversion, and reproducibility scripts  
-3. **Exploratory analysis** → pollutant variability and inter-station correlations  
-4. **Forecasting models** → Prophet–LSTM hybrid approach  
-5. **Educational visualisation** → Quarto Notebook for classroom integration  
+This project responds to several recurrent limitations observed in applied data science practice:
 
-Rendered notebook:  
-👉 [**OpenUrbanAir_and_Meteorological_Workflow.html**](https://jcaceres-academico.github.io/OpenUrbanAirandMeteorological/OpenUrbanAir_and_Meteorological_Workflow.html)
+- Insufficient attention to the temporal structure of environmental data.
+- Overemphasis on predictive performance at the expense of interpretability.
+- Superficial adoption of emerging technologies without methodological grounding.
+- Limited reproducibility in applied environmental analytics.
+
+The proposed pipeline addresses these issues by prioritising **analytical clarity, transparency, and methodological robustness**.
 
 ---
 
-## 🗂️ Repository Structure
+## 🧩 Reproducible methodological workflow
+
+The analytical workflow follows a structured and sequential pipeline:
+
+1. **Data preparation and harmonisation**  
+   Validation of raw observations, temporal parsing, and explicit handling of missing values.
+
+2. **Exploratory and structural analysis**  
+   Examination of temporal dynamics, seasonal behaviour, and data gaps to understand the data-generating process.
+
+3. **Classical modelling and evaluation**  
+   Simple baseline and linear models with time-based validation to establish methodological reference points.
+
+4. **Quantum methodological extension**  
+   Integration of a quantum kernel-based model under NISQ constraints, without claims of performance superiority.
+
+This workflow reflects a **methodological stance**, not a technology-driven comparison.
+
+---
+
+## 🧭 Analytical philosophy
+
+The pipeline is guided by the following principles:
+
+- **Sequential structure**: each analytical step builds explicitly on the previous one.
+- **Time-aware validation**: no random splits are applied to temporal data.
+- **Model parsimony**: simple and interpretable models are favoured where appropriate.
+- **Reproducibility by design**: all results are generated programmatically from documented scripts.
+- **Extensibility**: emerging analytical paradigms can be integrated without structural changes.
+
+This philosophy underpins both the doctoral thesis and its extension presented here.
+
+---
+
+## 🗂️ Repository structure
 
 ```text
-OpenUrbanAirandMeteorological/
-├── docs/                      # Quarto notebook and rendered HTML
-│   ├── OpenUrbanAir_and_Meteorological_Workflow.qmd
-│   ├── OpenUrbanAir_and_Meteorological_Workflow.html
-│   └── images/                # PNG figures used in the notebook
-├── figures_tiff/              # High-resolution TIFF figures for publication
-├── scripts/                   # R scripts for preprocessing and analysis
-├── .gitignore
+urban-pm25-methodology/
+├── docs/                      # Rendered Quarto website (GitHub Pages)
+│   ├── index.html
+│   ├── scripts.html
+│   └── notebook.html
+├── data/                      # Clean analysis-ready dataset
+├── figures_tiff/              # High-resolution figures for publication
+├── scripts/                   # R and Python scripts implementing the pipeline
+├── index.qmd
+├── scripts.qmd
+├── notebook.qmd
+├── _quarto.yml
 ├── LICENSE
-├── datos.Rproj
 └── README.md
-``` 
+```
 
 ## ⚙️ Technologies Used
 
 | Category        | Tools / Packages |
 |-----------------|------------------|
 | **Programming** | [R](https://www.r-project.org/) 4.4 +  · [Quarto](https://quarto.org/) |
-| **Data Handling** | `tidyverse` · `arrow` · `lubridate` |
-| **Visualisation** | `ggplot2` · `patchwork` · `leaflet` · `cowplot` |
-| **Forecasting** | `prophet` · `keras` · `tensorflow` · `torch` |
-| **Reproducibility** | `renv` · `knitr` · `rmarkdown` |
+| **Data Handling** | `tidyverse` · `arrow` · `lubridate` . `readr`|
+| **Visualisation** | `ggplot2` · `cowplot` |
+| **Modelling** | `Linear models` · `Persistence baselines` |
+| **Quantum Computing** | `Qiskit` · `Qiskit Aer` · `Qiskit Machine Learning` |
+| **Reproducibility** | `Git` · `GitHub Pages` · `Conda` |
+
+## 🔁 Reproducibility and openness
+
+All analyses are fully reproducible and rely exclusively on open-source tools.
+
+  - Scripts are executed sequentially and independently.
+  - No manual data manipulation is performed.
+  - Computational environments are explicitly documented.
+  - Results are generated programmatically from source code.
+  
+This approach supports transparent, verifiable, and reusable research practices.
+
+```{r fig1-pipeline, echo=FALSE, fig.align='center', out.width='90%'}
+knitr::include_graphics("images/Fig1_Metodological_pipeline.png")
+```
+
+**Fig. 1.** Methodological pipeline for urban PM2.5 analysis, illustrating the sequential integration of data preparation, exploratory analysis, classical modelling, and a demonstrative quantum extension under NISQ constraints.
+
+## 🎓 Relation to the doctoral thesis
+
+This project constitutes a direct methodological extension of the doctoral thesis and is presented as evidence that the research line remains active, adaptable, and open to emerging analytical methodologies.
+
+It is not intended as a standalone technological breakthrough, but as a **coherent continuation of a broader research programme** in applied data science and urban environmental analytics.
 
 ## 📚 Bibliographic Resources
 
-The complete set of references cited in the article is available in the file  
-[`applsci-3979500.bib`](./applsci-3979500.bib).  
-It contains all bibliographic records used in the research and manuscript  
-*Citizen Science and STEM Education with R: AI–IoT Forecasting and Reproducible Learning from Open Urban Air Quality Data*  
-(*Applied Sciences*, MDPI, 2025).  
-
-This file follows the **Better BibTeX** format with active DOIs for interoperability  
-with Zotero, Quarto, and R Markdown workflows.
-
-A mirrored copy is also archived in the author’s Zotero collection for citation reproducibility:  
-➡️ [Zotero: applsci-3979500 Collection](https://www.zotero.org/jcaceres_academic/collections/X6RW9UGU)
-
-## 🧭 Educational Use
-
-This repository supports STEM education by providing:
-Hands-on examples for environmental informatics and sustainability courses
-Open-source reproducible R-Quarto workflow
-Didactic visualisations for citizen science and air quality literacy
+Bibliographic resources associated with the doctoral thesis and related publications will be made available in this repository.
 
 ## 📚 Citation
 
 If you reuse or adapt this resource, please cite as:
 
 > Cáceres-Tello, J., & Galán-Hernández, J. J. (2025).  
-> **OpenUrbanAirandMeteorological: Citizen Science and STEM Education with R — Teaching Innovation through Open Urban Climate Data.**  
-> *Applied Sciences* (MDPI).  
-> Available at [https://jcaceres-academic.github.io/OpenUrbanAirandMeteorological](https://jcaceres-academic.github.io/OpenUrbanAirandMeteorological)
+Urban PM2.5 Methodology: A reproducible analytical pipeline for applied data science.
+Available at: [https://jcaceres-academic.github.io/urban-pm25-methodology/](https://jcaceres-academic.github.io/urban-pm25-methodology) 
 
 ## ⚖️ License
 
 Code and notebooks: Creative Commons Attribution 4.0 (CC BY 4.0)
-
 Data (if reused): CC0 1.0 Public Domain Dedication
 
 
