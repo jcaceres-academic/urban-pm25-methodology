@@ -255,29 +255,29 @@
     "objectID": "notebook.html#analytical-context",
     "href": "notebook.html#analytical-context",
     "title": "Urban PM2.5 Methodology",
-    "section": "",
-    "text": "Urban air quality datasets are typically affected by issues such as missing observations, irregular temporal coverage, and heterogeneous formats.\nBefore any exploratory or modelling analysis can be considered meaningful, it is therefore essential to ensure that the data are clean, temporally consistent, and analysis-ready.\nThis initial stage establishes the analytical baseline for the entire pipeline."
+    "section": "1.1 Analytical context",
+    "text": "1.1 Analytical context\nUrban air quality datasets are typically affected by issues such as missing observations, irregular temporal coverage, and heterogeneous formats.\nBefore any exploratory or modelling analysis can be considered meaningful, it is therefore essential to ensure that the data are clean, temporally consistent, and analysis-ready.\nThis initial stage establishes the analytical baseline for the entire pipeline."
   },
   {
     "objectID": "notebook.html#data-source-and-scope",
     "href": "notebook.html#data-source-and-scope",
     "title": "Urban PM2.5 Methodology",
-    "section": "",
-    "text": "The analysis is based on daily PM2.5 concentration measurements collected at an urban monitoring location over the period 2021–2023.\nThe dataset is treated as an observational time series, with explicit attention to: - temporal ordering, - continuity of measurements, - and potential gaps in data availability.\nNo spatial aggregation or external data sources are introduced at this stage."
+    "section": "1.2 Data source and scope",
+    "text": "1.2 Data source and scope\nThe analysis is based on daily PM2.5 concentration measurements collected at an urban monitoring location over the period 2021–2023.\nThe dataset is treated as an observational time series, with explicit attention to: - temporal ordering, - continuity of measurements, - and potential gaps in data availability.\nNo spatial aggregation or external data sources are introduced at this stage."
   },
   {
     "objectID": "notebook.html#preparation-strategy",
     "href": "notebook.html#preparation-strategy",
     "title": "Urban PM2.5 Methodology",
-    "section": "",
-    "text": "The data preparation process follows a transparent and reproducible strategy:\n\nRaw data are loaded directly from the data/ directory.\nDate fields are parsed and validated to ensure correct temporal ordering.\nMissing or invalid observations are identified explicitly.\nNo interpolation or synthetic data generation is performed.\nAll transformations are executed programmatically.\n\nThis conservative approach ensures that subsequent analytical results remain traceable to the original observations."
+    "section": "1.3 Preparation strategy",
+    "text": "1.3 Preparation strategy\nThe data preparation process follows a transparent and reproducible strategy:\n\nRaw data are loaded directly from the data/ directory.\nDate fields are parsed and validated to ensure correct temporal ordering.\nMissing or invalid observations are identified explicitly.\nNo interpolation or synthetic data generation is performed.\nAll transformations are executed programmatically.\n\nThis conservative approach ensures that subsequent analytical results remain traceable to the original observations."
   },
   {
     "objectID": "notebook.html#script-executed",
     "href": "notebook.html#script-executed",
     "title": "Urban PM2.5 Methodology",
-    "section": "",
-    "text": "The complete data preparation logic is implemented in the following script:\n\n01_data_and_preprocessing.R\n\nThe script produces a clean, analysis-ready dataset that is reused consistently across all subsequent stages.\n\n\n\n\n\n\n\n\nFigure 1"
+    "section": "1.4 Script executed",
+    "text": "1.4 Script executed\nThe complete data preparation logic is implemented in the following script:\n\n01_data_and_preprocessing.R\n\nThe script produces a clean, analysis-ready dataset that is reused consistently across all subsequent stages.\n\n\n\n\n\n\n\n\nFigure 1"
   },
   {
     "objectID": "notebook.html#analytical-context-1",

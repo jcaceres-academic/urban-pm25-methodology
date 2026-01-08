@@ -20,6 +20,14 @@ format:
     theme: cosmo
 ---
 
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
+[![Rendered with Quarto](https://img.shields.io/badge/Rendered_with-Quarto-4A90E2.svg)](https://quarto.org/)
+[![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-black.svg)](https://github.com/jcaceres-academic/urban-pm25-methodology)
+[![DOI](https://img.shields.io/badge/DOI-10.3390%2Fcomputers14060235-blue.svg)]()
+[![Zotero](https://img.shields.io/badge/Zotero-Computers--2025-red.svg)]()
+
+---
+
 # 📂 Data preparation and harmonisation
 
 ## Analytical context
